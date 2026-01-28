@@ -362,6 +362,41 @@ knowledge of the CeCILL-B license and that you accept its terms.
                     </java>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.23.0</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>net.sourceforge.pmd</groupId>
+                        <artifactId>pmd-core</artifactId>
+                        <version>7.20.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>net.sourceforge.pmd</groupId>
+                        <artifactId>pmd-java</artifactId>
+                        <version>7.20.0</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <rulesets>
+                        <ruleset>../ruleset.xml</ruleset>
+                    </rulesets>
+                    <format>xml</format>
+                    <linkXRef>false</linkXRef>
+                    <failOnViolation>false</failOnViolation>
+                </configuration>
+                <executions>
+                    <!-- Exécuter PMD pendant la phase de vérification -->
+                    <execution>
+                        <id>pmd</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>
